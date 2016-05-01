@@ -37,6 +37,8 @@ residue_percentage = 100 - float(input('Enter residue composition %: '))
 feed_percentage = float(input('Enter feed composition %: '))
 distillate_percentage = float(input('Enter distillate composition %: '))
 q = eval(input('Enter mole fraction of liquid in feed (q): '))
+reflux_ratio = float(input('Enter the reflux ratio (R/Rm): '))
+print(reflux_ratio)
 
 xw = mole_fraction(residue_percentage)
 xf = mole_fraction(feed_percentage)
@@ -63,14 +65,13 @@ xf_inter, yf_inter = intersection(x, y, [xf] * 11, y_straight)
 # xd line
 xd_inter, yd_inter = intersection(x, y, [xd] * 11, y_straight)
 
-
 x_inter_array, y_inter_array = line(xf_inter, yf_inter, slope, 3)
 plt.plot(x_inter_array, y_inter_array, color='blue')
 
 x_inter2, y_inter2 = intersection(x_inter_array, y_inter_array, x, y_curve)
 slope2 = (yd_inter - y_inter2)/(xd_inter - x_inter2)
 rm = 1/(1 - slope2)
-R = rm * 1.5
+R = rm * reflux_ratio
 slope3 = R/(R + 1)
 x_inter_array2, y_inter_array2 = line(xd_inter, yd_inter, slope3, 8)
 plt.plot(x_inter_array2, y_inter_array2, color='green')
@@ -80,11 +81,67 @@ slope4 = (yw_inter - y_inter5)/(xw_inter - x_inter5)
 x_inter_array3, y_inter_array3 = line(x_inter5, y_inter5, slope4, 4)
 plt.plot(x_inter_array3, y_inter_array3, color='purple')
 
-x_inter_array, y_inter_array = line(xd_inter, yd_inter, 0, 2)
+x_inter_array, y_inter_array = line(xd_inter, yd_inter, 0, 4)
 plt.plot(x_inter_array, y_inter_array, color='black')
 
 x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 2, True)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
 plt.plot(x_inter_array, y_inter_array, color='black')
 
 plt.show()
