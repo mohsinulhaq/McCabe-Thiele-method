@@ -38,7 +38,6 @@ feed_percentage = float(input('Enter feed composition %: '))
 distillate_percentage = float(input('Enter distillate composition %: '))
 q = eval(input('Enter mole fraction of liquid in feed (q): '))
 reflux_ratio = float(input('Enter the reflux ratio (R/Rm): '))
-print(reflux_ratio)
 
 xw = mole_fraction(residue_percentage)
 xf = mole_fraction(feed_percentage)
