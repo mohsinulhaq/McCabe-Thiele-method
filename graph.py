@@ -16,15 +16,18 @@ def intersection(x1_array, y1_array, x2_array, y2_array):
 
 
 def line(x_inter, y_inter, slope, length, perp=False):
+    if perp:
+        x_inter, y_inter = y_inter, x_inter
     x_array = [x_inter - i / 10 for i in range(length)]
     y_array = [y_inter]
     for i in range(1, length):
         y_inter -= slope * 0.1
         y_array.append(y_inter)
-    if not perp:
-        return x_array, y_array
-    else:
+    if perp:
         return y_array, x_array
+    else:
+        return x_array, y_array
+
 
 x = y = np.arange(0, 1.1, 0.1)
 y_curve = [0, 0.21, 0.38, 0.511, 0.627, 0.719, 0.79, 0.853, 0.91, 0.961, 1]
@@ -77,12 +80,11 @@ slope4 = (yw_inter - y_inter5)/(xw_inter - x_inter5)
 x_inter_array3, y_inter_array3 = line(x_inter5, y_inter5, slope4, 4)
 plt.plot(x_inter_array3, y_inter_array3, color='purple')
 
-# x_inter_array, y_inter_array = line(xd_inter, yd_inter, 0, 2)
-# plt.plot(x_inter_array, y_inter_array, color='black')
-#
-# x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-# x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 2, True)
-# print(x_inter_array, y_inter_array)
-# plt.plot(x_inter_array, y_inter_array, color='black')
+x_inter_array, y_inter_array = line(xd_inter, yd_inter, 0, 2)
+plt.plot(x_inter_array, y_inter_array, color='black')
+
+x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 2, True)
+plt.plot(x_inter_array, y_inter_array, color='black')
 
 plt.show()
