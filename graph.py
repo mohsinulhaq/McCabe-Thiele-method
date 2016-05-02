@@ -32,6 +32,7 @@ def line(x_inter, y_inter, slope, length, perp=False):
 x = y = np.arange(0, 1.1, 0.1)
 y_curve = [0, 0.21, 0.38, 0.511, 0.627, 0.719, 0.79, 0.853, 0.91, 0.961, 1]
 y_straight = x
+count = 0
 
 residue_percentage = 100 - float(input('Enter residue composition %: '))
 feed_percentage = float(input('Enter feed composition %: '))
@@ -77,70 +78,48 @@ plt.plot(x_inter_array2, y_inter_array2, color='green')
 
 x_inter5, y_inter5 = intersection(x_inter_array2, y_inter_array2, x_inter_array, y_inter_array)
 slope4 = (yw_inter - y_inter5)/(xw_inter - x_inter5)
-x_inter_array3, y_inter_array3 = line(x_inter5, y_inter5, slope4, 4)
+x_inter_array3, y_inter_array3 = line(x_inter5, y_inter5, slope4, 5)
 plt.plot(x_inter_array3, y_inter_array3, color='purple')
 
 x_inter_array, y_inter_array = line(xd_inter, yd_inter, 0, 4)
 plt.plot(x_inter_array, y_inter_array, color='black')
 
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
+while True:
+    try:
+        x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+    except AttributeError:
+        break
+    x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+    plt.plot(x_inter_array, y_inter_array, color='black')
+    count += 1
 
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
+    try:
+        x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
+        if x_inter < x_inter5:
+            break
+    except AttributeError:
+        break
+    x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+    plt.plot(x_inter_array, y_inter_array, color='black')
 
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
+while True:
+    try:
+        x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
+        if x_inter < xw:
+            break
+    except AttributeError:
+        break
+    x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
+    plt.plot(x_inter_array, y_inter_array, color='black')
 
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
+    try:
+        x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
+    except AttributeError:
+        break
+    x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
+    plt.plot(x_inter_array, y_inter_array, color='black')
+    count += 1
 
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array2, y_inter_array2)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x_inter_array3, y_inter_array3)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4)
-plt.plot(x_inter_array, y_inter_array, color='black')
-
-x_inter, y_inter = intersection(x_inter_array, y_inter_array, x, y_curve)
-x_inter_array, y_inter_array = line(x_inter, y_inter, 0, 4, True)
-plt.plot(x_inter_array, y_inter_array, color='black')
+plt.text(0.4, 1.1, 'Number of trays = ' + str(count - 1))
 
 plt.show()
